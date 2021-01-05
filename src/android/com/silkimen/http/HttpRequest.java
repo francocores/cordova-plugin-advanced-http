@@ -2489,10 +2489,14 @@ public class HttpRequest {
       public HttpRequest run() throws IOException {
         final byte[] buffer = new byte[bufferSize];
         int read;
-        while ((read = input.read(buffer)) != -1) {
-          output.write(buffer, 0, read);
-          totalWritten += read;
-          progress.onUpload(totalWritten, totalSize);
+        try {
+          while ((read = input.read(buffer)) != -1) {
+            output.write(buffer, 0, read);
+            totalWritten += read;
+            progress.onUpload(totalWritten, totalSize);
+          }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return HttpRequest.this;
       }
@@ -2514,10 +2518,14 @@ public class HttpRequest {
       public HttpRequest run() throws IOException {
         final char[] buffer = new char[bufferSize];
         int read;
-        while ((read = input.read(buffer)) != -1) {
-          output.write(buffer, 0, read);
-          totalWritten += read;
-          progress.onUpload(totalWritten, -1);
+        try {
+          while ((read = input.read(buffer)) != -1) {
+            output.write(buffer, 0, read);
+            totalWritten += read;
+            progress.onUpload(totalWritten, -1);
+          }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return HttpRequest.this;
       }
