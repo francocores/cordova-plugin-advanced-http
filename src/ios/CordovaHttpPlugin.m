@@ -572,7 +572,7 @@
                 return;
             }
             NSData *data = (NSData *)responseObject;
-            if (![data writeToFile:filePath atomically:YES]) {
+            if (![data writeToFile:filePath options:NSDataWritingFileProtectionComplete error:nil]) {
                 NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
                 [dictionary setObject:[NSNumber numberWithInt:500] forKey:@"status"];
                 [dictionary setObject:@"Could not write the data to the given filePath." forKey:@"error"];
