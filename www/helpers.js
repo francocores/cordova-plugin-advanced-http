@@ -146,7 +146,7 @@ module.exports = function init(global, jsUtil, cookieHandler, messages, base64, 
       return {
         alias: null,
         rawPkcs: null,
-        pkcsPassword: ''
+        pkcsPassword: null
       };
     }
 
@@ -164,7 +164,7 @@ module.exports = function init(global, jsUtil, cookieHandler, messages, base64, 
       return {
         alias: jsUtil.getTypeOf(options.alias) === 'Undefined' ? null : options.alias,
         rawPkcs: null,
-        pkcsPassword: ''
+        pkcsPassword: null
       };
     }
 
