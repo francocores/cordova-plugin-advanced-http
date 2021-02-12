@@ -59,11 +59,12 @@
         NSURLCredential * _Nullable __autoreleasing * _Nullable credential
     ) {
         if ([challenge.protectionSpace.authenticationMethod isEqualToString: NSURLAuthenticationMethodServerTrust]) {
-            *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
 
             if (![self->securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
                 return NSURLSessionAuthChallengeRejectProtectionSpace;
             }
+
+            *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
 
             if (credential) {
                 return NSURLSessionAuthChallengeUseCredential;
